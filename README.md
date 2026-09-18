@@ -1,11 +1,11 @@
-# TASK - Organic Vegetable Store Website
+# Khammam Vegitables - React + Vite Organic Store
 
-A modern, attractive, and responsive organic vegetable e-commerce web application built exclusively with **HTML5, CSS3, and Vanilla JavaScript** (zero external frameworks or libraries).
+A modern, attractive, and responsive organic vegetable e-commerce web application built with **React 18 + Vite** (zero heavy CSS frameworks, custom modern design tokens).
 
 ---
 
 ## 🌿 Business Details
-- **Firm Name:** TASK
+- **Firm Name:** Khammam Vegitables
 - **Business Type:** Organic Vegetable Store
 - **Contact Number:** `9000420062`
 - **Location:** Telangana, India
@@ -15,11 +15,10 @@ A modern, attractive, and responsive organic vegetable e-commerce web applicatio
 
 ## 🚀 Key Features
 
-1. **Modern Organic UI/UX:**
-   - Fresh farm-inspired color palette (emerald, forest green, warm mint, and clean white).
-   - Glassmorphism sticky navigation header with dynamic shadow on scroll.
-   - Micro-interactions, rounded cards, and smooth hover elevation.
-   - Interactive toast notifications for user actions.
+1. **Modern React Architecture:**
+   - Single Page Application (SPA) powered by **Vite** and **React 18**.
+   - Modular component structure with clean separations of concerns.
+   - Blazing fast hot-module replacement (HMR) during development.
 
 2. **Full Product Catalog (22 Fresh Vegetables):**
    - High-resolution, appetizing vegetable imagery with automatic SVG fallback generation for offline resilience.
@@ -37,28 +36,20 @@ A modern, attractive, and responsive organic vegetable e-commerce web applicatio
    - Green Vegetables
    - Seasonal Vegetables
 
-4. **Real-Time Instant Search:**
+4. **Real-Time Instant Search & Sorting:**
    - Instant search with matching on vegetable names, regional names, and categories.
-   - One-click clear search button.
+   - Sorting by Price (Low to High, High to Low) and Alphabetical order (A-Z).
 
-5. **Sorting Options:**
-   - Default
-   - Price: Low to High
-   - Price: High to Low
-   - Name: A-Z
-
-6. **Interactive Slide-Out Cart Drawer & LocalStorage:**
-   - Seamless slide-out drawer with backdrop blur.
+5. **Interactive Slide-Out Cart Drawer & LocalStorage:**
    - Itemized listing with increment/decrement steppers, item totals, and remove button.
    - Real-time subtotal, delivery charge (`₹30`), and grand total calculations.
-   - Empty state illustration and prompt: *"Your cart is empty. Add some fresh vegetables!"*.
    - Cart persistence via `localStorage` (survives page refreshes).
    - Sticky floating cart bar on mobile screens.
 
-7. **Direct WhatsApp Order System:**
-   - Automatically builds an encoded WhatsApp message matching the required format:
+6. **Direct WhatsApp Order System:**
+   - Automatically builds an encoded WhatsApp message:
      ```
-     Hello TASK,
+     Hello Khammam Vegitables,
      I would like to place an order.
 
      Order Details:
@@ -66,72 +57,69 @@ A modern, attractive, and responsive organic vegetable e-commerce web applicatio
      - Potato - 1 kg
      - Carrot - 1 kg
 
-     Subtotal: ₹240
+     Subtotal: ₹230
      Delivery: ₹30
-     Total: ₹270
+     Total: ₹260
 
      Please confirm my order.
      ```
    - Opens `https://wa.me/919000420062?text=...` directly.
    - Direct click-to-call button (`tel:9000420062`).
 
-8. **Informational & Brand Sections:**
-   - **Hero Section:** With headline *"Fresh Organic Vegetables, Straight From Nature"* and 4 trust badges (*100% Fresh*, *Naturally Grown*, *Farm Fresh*, *Quality Checked*).
-   - **About TASK:** Honest narrative highlighting freshness and quality for families without unsupported certification claims.
-   - **Why Choose Us:** 4 feature cards (*Fresh Every Day*, *Natural Quality*, *Fair Pricing*, *Easy Ordering*).
-   - **How It Works:** 3 numbered step cards (*Choose*, *Add to Cart*, *Order via WhatsApp*).
-   - **Contact Section:** Location, phone, direct call/WhatsApp triggers, and an interactive contact form with validation.
-   - **Footer:** Quick links, business details, and copyright `© 2026 TASK`.
-
 ---
 
-## 📁 File Structure
+## 📁 Project Structure
 
 ```text
-TASK-organic-vegetables/
+khammam-vegitables/
 │
-├── index.html               # Main semantic HTML5 markup
-├── css/
-│   └── style.css            # Complete responsive CSS3 styling & design tokens
-├── js/
-│   └── script.js            # Modular Vanilla JavaScript application logic
-├── images/
-│   └── vegetables/          # Vegetable images and assets
-└── README.md                # Project documentation
+├── package.json              # Project scripts & dependencies
+├── vite.config.js            # Vite build configuration
+├── index.html                # HTML entry point for Vite React mount
+├── src/
+│   ├── main.jsx              # React root render
+│   ├── App.jsx               # Main state container (cart, filters, drawers)
+│   ├── data/
+│   │   └── vegetables.js     # Product catalog & configuration constants
+│   ├── components/
+│   │   ├── Header.jsx        # Sticky navigation header
+│   │   ├── MobileNav.jsx     # Mobile drawer navigation
+│   │   ├── Hero.jsx          # Hero section with trust badges
+│   │   ├── Categories.jsx    # Category filter pills
+│   │   ├── ProductControls.jsx # Search input & sort dropdown
+│   │   ├── ProductCard.jsx   # Individual product card & stepper
+│   │   ├── ProductGrid.jsx   # Grid of product cards & empty state
+│   │   ├── CartDrawer.jsx    # Slide-out cart with checkout actions
+│   │   ├── MobileCartBar.jsx # Sticky mobile bottom cart bar
+│   │   ├── About.jsx         # Store story & local harvest details
+│   │   ├── WhyChooseUs.jsx   # 4 value cards
+│   │   ├── HowItWorks.jsx    # 3-step guide
+│   │   ├── Contact.jsx       # Contact form & call buttons
+│   │   ├── Footer.jsx        # Footer & copyright
+│   │   └── Toast.jsx         # Toast notifications
+│   └── styles/
+│       └── style.css         # Modern design tokens & responsive CSS
+└── .github/workflows/
+    └── deploy.yml            # Automated GitHub Pages CI/CD workflow
 ```
 
 ---
 
-## 🛠️ How to Customize Products & Prices
+## 💻 Running the Project Locally
 
-All product definitions are stored in the clean, easily readable `VEGETABLES_DATA` array at the top of [`js/script.js`](file:///c:/Users/Ashok%20Kumar/Desktop/organic%20veg/js/script.js).
-
-### To update a vegetable's price:
-```javascript
-{
-  id: 1,
-  name: "Tomato",
-  localName: "Tamata (టమాట)",
-  category: "Tomatoes & Gourds",
-  price: 65,          // <-- Update price here
-  unit: "kg",         // <-- Update unit here
-  description: "...",
-  badge: "Naturally Grown",
-  image: "...",
-  color: "#e63946"
-}
+### 1. Development Mode (with Live Reload):
+```powershell
+npm run dev
 ```
+Open `http://localhost:5173` in your browser.
 
-### To change the store phone number or delivery fee:
-In [`js/script.js`](file:///c:/Users/Ashok%20Kumar/Desktop/organic%20veg/js/script.js):
-```javascript
-const DELIVERY_CHARGE = 30;         // Delivery fee in ₹
-const STORE_PHONE = "9000420062";    // Contact phone
-const STORE_WHATSAPP_PHONE = "919000420062"; // WhatsApp with country code
+### 2. Production Build:
+```powershell
+npm run build
 ```
+Creates an optimized static bundle in the `dist/` directory.
 
----
-
-## 💻 How to Run the Website
-
-No web server or build step required! Simply double-click **`index.html`** in any modern web browser (Google Chrome, Microsoft Edge, Mozilla Firefox, Safari).
+### 3. Preview Production Build:
+```powershell
+npm run preview
+```
